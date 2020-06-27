@@ -1,18 +1,16 @@
 import React from 'react';
 
 import GlobalStyle from './styles/global';
-import SignIn from './pages/SignIn';
 
-import Toast from './components/Toast';
-import { AuthProvider } from './hooks/AuthContext';
+import SignIn from './pages/SignIn';
+import AppProvider from './hooks';
 
 const App: React.FC = () => (
   <>
-    <AuthProvider>
+    <AppProvider>
       <SignIn />
-    </AuthProvider>
+    </AppProvider>
 
-    <Toast />
     <GlobalStyle />
   </>
 );
