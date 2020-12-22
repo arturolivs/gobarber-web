@@ -19,7 +19,7 @@ interface ForgotPasswordFormData {
 }
 
 const ForgotPassword: React.FC = () => {
-  const [loading, setLoading]= useState(false);
+  const [loading, setLoading] = useState(false);
 
   const formRef = useRef<FormHandles>(null);
 
@@ -42,16 +42,15 @@ const ForgotPassword: React.FC = () => {
           abortEarly: false,
         });
 
-       await api.post('/password/forgot', {
+        await api.post('/password/forgot', {
           email: data.email,
-        })
+        });
 
         addToast({
           type: 'success',
           title: 'E-mail de recuperação enviado',
-          description: 'Enviamos um e-mail para recuperação de senha.'
-        })
-
+          description: 'Enviamos um e-mail para recuperação de senha.',
+        });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -83,7 +82,9 @@ const ForgotPassword: React.FC = () => {
 
             <Input name="email" icon={FiMail} placeholder="E-mail" />
 
-            <Button loading={loading} type="submit">Recuperar</Button>
+            <Button loading={loading} type="submit">
+              Recuperar
+            </Button>
           </Form>
 
           <Link to="/">
