@@ -78,14 +78,36 @@ const Profile: React.FC = () => {
           abortEarly: false,
         });
 
-        const response = await api.put('/profile', data);
+        const {
+          name,
+          email,
+          old_password,
+          password,
+          password_confirmation,
+        } = data;
+
+        const forData = {
+          name,
+          email,
+          ...(old_password
+            ? {
+                old_password,
+                password,
+                password_confirmation,
+              }
+            : {}),
+        };
+
+        const response = await api.put('/profile', forData);
+
+        updateUser(response.data);
 
         history.push('/dashboard');
 
         addToast({
           type: 'success',
           title: 'Perfil atualizado!!',
-          description: 'Alteração realizada com sucesso.',
+          description: 'Informações alteradas com sucesso.',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {

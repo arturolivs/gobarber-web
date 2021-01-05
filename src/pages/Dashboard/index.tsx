@@ -246,6 +246,7 @@ const Dashboard: React.FC = () => {
               available: { daysOfWeek: [1, 2, 3, 4, 5] },
             }}
             selectedDays={selectedDate}
+            fixedWeeks
             onDayClick={handleDateChange}
             onMonthChange={handleMonthChange}
             months={[
